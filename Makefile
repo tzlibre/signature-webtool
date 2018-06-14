@@ -2,8 +2,8 @@ BUILD=build
 INPUT_LIB=lib.js
 OUTPUT_LIB=$(BUILD)/lib.js
 
-HTML=$(BUILD)/tzlibre-sign.html
-TMPL=tzlibre-sign.tmpl.html
+HTML=$(BUILD)/tzlibre-signature-webtool.html
+TMPL=tzlibre-signature-webtool.tmpl.html
 
 IMAGE=tzlibre/browserify-sign-lib
 CONTAINER=sign-container
