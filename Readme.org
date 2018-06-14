@@ -1,4 +1,4 @@
-* Download our signature webtools from [[https://raw.githubusercontent.com/tzlibre/web-tools/master/dist/tzlibre-signature-webtool.html][here]]
+* Download our signature webtools from [[https://raw.githubusercontent.com/tzlibre/signature-webtool/master/dist/tzlibre-signature-webtool.html][here]]
 
 ** How to generate signature data
 
