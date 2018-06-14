@@ -21,9 +21,9 @@
 
 *** 2. Build
 
-#BEGIN_SRC
+#+BEGIN_SRC sh
 make
-#END_SRC
+#+END_SRC
 
 *** 3. Result
 
