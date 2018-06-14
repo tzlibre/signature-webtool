@@ -1,8 +1,8 @@
-* Download our signature webtools from [[https://raw.githubusercontent.com/tzlibre/web-tools/master/dist/tzlibre-sign.html][here]]
+* Download our signature webtools from [[https://raw.githubusercontent.com/tzlibre/web-tools/master/dist/tzlibre-signature-webtool.html][here]]
 
 ** How to generate signature data
 
-- Download ~tzlibre-sign.html~ from [[https://raw.githubusercontent.com/tzlibre/web-tools/master/dist/tzlibre-sign.html][here]]
+- Download ~tzlibre-signature-webtool.html~ from [[https://raw.githubusercontent.com/tzlibre/web-tools/master/dist/tzlibre-sign.html][here]]
 - Close all network connections
 - Open this page with the Firefox browser in private mode
 - Fill in the form
@@ -11,7 +11,7 @@
 - Click "Download the above data" to download the output as .TXT file
 - Quit your browser
 - Reconnect to the internet
-- Fill in the <a href="https://tzlibre.github.io/sign.html">sign page</a> with data in your .TXT file
+- Fill in the [[https://tzlibre.github.io/sign.html][sign page]] with data in your .TXT file
 
 ** Build instructions (for developers)
 
@@ -27,6 +27,6 @@ make
 
 *** 3. Result
 
-The file `build/tzlibre-sign.html` cointains the build output.
+The file `build/tzlibre-signature-webtool.html` cointains the build output.
 
-Please make sure it has 0-diff against the distributed version you find in `dist/tzlibre-sign.html`.
+Please make sure it has 0-diff against the distributed version you find in `dist/tzlibre-signature-webtool.html`.
