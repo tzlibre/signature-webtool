@@ -1,0 +1,14 @@
+{
+  "name": "tzlibre-web-tools",
+  "version": "1.0.0",
+  "author": "TzLibre",
+  "dependencies": {
+    "blakejs": "1.1.0",
+    "bn.js": "4.11.8",
+    "elliptic": "6.4.0",
+    "js-nacl": "1.2.2",
+    "pbkdf2": "3.0.14",
+    "sha256": "0.2.0",
+    "unorm": "1.4.1"
+  }
+}
