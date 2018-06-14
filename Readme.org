@@ -2,7 +2,7 @@
 
 ** How to generate signature data
 
-- Download ~tzlibre-signature-webtool.html~ from [[https://raw.githubusercontent.com/tzlibre/web-tools/master/dist/tzlibre-signature-webtool.html][here]]
+- Download ~tzlibre-signature-webtool.html~ from [[https://raw.githubusercontent.com/tzlibre/signature-webtool/master/dist/tzlibre-signature-webtool.html][here]]
 - Close all network connections
 - Open this page with the Firefox browser in private mode
 - Fill in the form
