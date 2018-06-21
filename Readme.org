@@ -5,7 +5,7 @@ This tool allows you to produce TzLibre signature data from a web browser. Such 
 ** How to generate signature data
 
 1. Open the dist/ directory
-2. Download ~tzlibre-signature-webtool.html~ (right click -> save as [[https://github.com/tzlibre/signature-webtool/releases/download/v1.1/tzlibre-signature-webtool.html]])
+2. Download [[https://github.com/tzlibre/signature-webtool/releases/download/v1.1/tzlibre-signature-webtool.html][tzlibre-signature-webtool.html]]
 3. Close all network connections
 4. Launch Firefox browser in private mode
 5. Open the downloaded HTML file 
