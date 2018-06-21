@@ -11,7 +11,7 @@ This tool allows you to produce TzLibre signature data from a web browser. Such 
 
 ** Content of this repo
 
-~dist/tzlibre-signature-webtool.html~ this is the only file needed to produce signature data. It must be downloaded an opened only after disconnecting from the internet. It's self-contained (it already contains ~dist/lib.js~)
+~dist/tzlibre-signature-webtool.html~ this is the only file needed to produce signature data. It must be downloaded and opened only after disconnecting from the internet. It's self-contained (it already contains ~dist/lib.js~).
 
 
 *** Optional - other files (developers only)
