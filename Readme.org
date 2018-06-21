@@ -28,15 +28,15 @@ This tool allows you to produce TzLibre signature data from a web browser. Such 
 ** Optional - build instructions (developers only)
 
 1. Install system dependencies
-- [[https://www.docker.com/community-edition#/download][Docker]]
+ - [[https://www.docker.com/community-edition#/download][Docker]]
 
 2. Build
-#+BEGIN_SRC sh
-make
-#+END_SRC
+ #+BEGIN_SRC sh
+ make
+ #+END_SRC
 
 3. Verify result
-The file ~build/tzlibre-signature-webtool.html~ cointains the build output. You can now verify the file has 0-diff against the distributed version in `dist/tzlibre-signature-webtool.html`.
+ The file ~build/tzlibre-signature-webtool.html~ cointains the build output. You can now verify the file has 0-diff against the distributed version in `dist/tzlibre-signature-webtool.html`.
 
 ** Need help?
 
