@@ -1,32 +1,46 @@
-* Download our signature webtools from [[https://raw.githubusercontent.com/tzlibre/signature-webtool/master/dist/tzlibre-signature-webtool.html][here]]
+* TzLibre signature web tool
+
+This tool allows you to produce TzLibre signature data from a web browser. Such proof of ownership is required to redeem TZL tokens.
 
 ** How to generate signature data
 
-- Download ~tzlibre-signature-webtool.html~ from [[https://raw.githubusercontent.com/tzlibre/signature-webtool/master/dist/tzlibre-signature-webtool.html][here]]
-- Close all network connections
-- Open this page with the Firefox browser in private mode
-- Fill in the form
-- Click "Generate signature"
-- Verify the output
-- Click "Download the above data" to download the output as .TXT file
-- Quit your browser
-- Reconnect to the internet
-- Fill in the [[https://tzlibre.github.io/sign.html][sign page]] with data in your .TXT file
+1. Open the dist/ directory
+2. Download ~tzlibre-signature-webtool.html~ (right click -> save as [[https://github.com/tzlibre/signature-webtool/releases/download/v1.1/tzlibre-signature-webtool.html]])
+3. Close all network connections
+4. Launch Firefox browser in private mode
+5. Open the downloaded HTML file 
+6. Follow instructions on screen
 
-** Build instructions (for developers)
+** Content of this repo **
 
-*** 1. Install system dependencies
+~dist/tzlibre-signature-webtool.html~ this is the only file to download and open in order to produce signature data. It is self-contained, and it also contains dist/lib.js
+
+*** Optional - other files (developers only) **
+
+~dist/lib.js~ browserified crypto library. it is built merging and browserifying ~lib.js~ with cryptographic node modules.
+~Dockerfile~ Docker recipe to set up an envirnoment to make the build. A Docker environment is required for making a build with 0-diff against ~dist/tzlibre-signature-webtool.html~
+~Makefile~ 
+~lib.js~ Tezos-specific crypto functions for node
+~package-lock.json~ 
+~package.json~ required node modules
+~tzlibre-signature-webtool.tmpl.html~ HTML template used to generate the web tool. When building it is merged with ~dist/lib.js~
+
+** Optional - build instructions (developers only) **
+
+1. Install system dependencies
 
 - [[https://www.docker.com/community-edition#/download][Docker]]
 
-*** 2. Build
+2. Build
 
 #+BEGIN_SRC sh
 make
 #+END_SRC
 
-*** 3. Result
+3. Verify result
 
-The file ~build/tzlibre-signature-webtool.html~ cointains the build output.
+The file `build/tzlibre-signature-webtool.html` cointains the build output. You can now verify the file has 0-diff against the distributed version in `dist/tzlibre-signature-webtool.html`.
 
-Please make sure it has 0-diff against the distributed version you find in ~dist/tzlibre-signature-webtool.html~.
+** Need help?
+
+You can send us an encrypted mail at tzlibre@protonmail.com (PGP key https://is.gd/qoidNh) or you can DM us on Telegram https://t.me/tz_libre

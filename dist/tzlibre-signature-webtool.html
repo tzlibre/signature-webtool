@@ -35,22 +35,19 @@
 	  <h3>Safety</h3>
 
 	  <p>Producing a valid proof of ownership requires handling sensitive data from your Tezos contribution PDF. Don't proceed if your computer is unsafe or compromised.</p>
-	  <p>To better protect your sensitive data we suggest to do as follows:</p> 
+	  <p>To protect your sensitive data we suggest to make sure all network connections are turned off. You should disconnect from the internet.</p> 
 
-	  <ol>
-	    <li>Download this page</li>
-	    <li>Close all network connections</li>
-	    <li>Open this page with the Firefox browser in private mode</li>
-      <li>Fill in the form
+    <ol>
+      <li>Fill in this form
 	    <li>Click "Generate signature"</li>
-	    <li>Verify the output</li>
-	    <li>Click "Download the above data" to download the output as .TXT file</li>
+	    <li>Doublecheck the output against your contribution data</li>
+	    <li>Click "Save signature data" and save the output as a .TXT file</li>
 	    <li>Quit your browser</li>
 	    <li>Reconnect to the internet</li>
 	    <li>Fill in the <a href="https://tzlibre.github.io/sign.html">sign page</a> with data in your .TXT file</li> 
 	  </ol>
 	  
-	  <p><strong>Remember: you won't be able to change your Ethereum address afterwards, and we strongly suggest to use a brand new Ethereum address.</strong></p><br>
+	  <p><strong>You won't be able to change your Ethereum address after signing. We suggest to use a brand new Ethereum address.</strong></p><br>
 
 	  <form id="sgn-form" action="Javascript:submitForm()">
 	    <div class="sgn-formrow">
@@ -60,7 +57,7 @@
 
 	    <div class="sgn-formrow">
 	      <label for="field_seed">15 words secret key</label>
-        <textarea id="field_seed" type="text" placeholder="15 words" required></textarea>
+        <textarea id="field_seed" type="text" placeholder="word1 word2 word3 word4 ..." required></textarea>
 	    </div>
 
 	    <div class="sgn-formrow">
@@ -128,7 +125,7 @@
 
  </div>
 
- <button onclick="saveTextAsFile()">Download signature data</button>
+ <button onclick="saveTextAsFile()">Save signature data</button>
 
 	  </div>
 
@@ -139,147 +136,155 @@
     </div>
 
     <script>
-     /** Globals **/
-     
-     let input = {}
-     let output = {}
-     
-     /** Library **/
-     
-     function getInputElements () {
-       return {
-         ETH_addr: document.getElementById('field_ethaddress'),
-         TZ_addr: document.getElementById('field_tzaddress'),
-         mnemonic: document.getElementById('field_seed'),
-         email: document.getElementById('field_email'),
-         password: document.getElementById('field_password')
-       }
-     }
-     
-     function getOutputElements () {
-       return {
-         TZL_pkh: document.getElementById('tzl-pkh'),
-         ETH_addr: document.getElementById('eth-addr'),
-         TZL_pk: document.getElementById('tzl-pk'),
-         ETH_addr_signature: document.getElementById('eth-addr-signature')
-       }
-     }
-     
-     function add_0x (addr) {
-       if (addr.startsWith('0x')) {
-         return addr
-       }
-       
-       return '0x' + addr
-     }
-     
-     function startLoading () {
-       let button = document.getElementById('button_submit')
-       button.classList.add('loading')
-       button.setAttribute('disabled', true)
-     }
-     
-     function stopLoading () {
-       let button = document.getElementById('button_submit')
-       button.classList.remove('loading')
-       button.removeAttribute('disabled')
-     }
-     
-     function handleGenerateDataPromise (data) {
-       output = data
-       console.log(output)
-       let isValid = typeof output !== 'string'
-       
-       if (isValid) {
-         showTxData(output)
-         document.getElementById('sgn-form-result').style.display = 'block'
-         document.getElementById('sgn-form-result').scrollIntoView()
-       } else {
-         showFormError()
-         console.error(output)
-       }
-       stopLoading()
-     }
-     
-     function handleGenerateDataPromiseError (err) {
-       showFormError()
-       console.error(err)
-       stopLoading()
-     }
-     
-     function submitForm (event) {
-       startLoading()
-       
-       let inputElements = getInputElements()
-       
-       for (let p in inputElements) {
-         input[p] = inputElements[p].value
-       }
-       // add 0x to ETH_addr
-       input.ETH_addr = add_0x(input.ETH_addr)
-       
-       setTimeout(function () {
-         let outputPromise = generateData(input)
-         outputPromise
-           .then(handleGenerateDataPromise)
-           .catch(handleGenerateDataPromiseError)
-       }, 100)
-     }
-     
-     function showTxData (data) {
-       let outputElements = getOutputElements()
-       
-       for (let p in outputElements) {
-         outputElements[p].innerHTML = data[p]
-       }
-     }
-     
-     function showFormError () {
-       alert( 'Sorry, there\'s something wrong! Check your data carefully and try again.' )
-     }
-     
-     // Save data
-     
-     function getToSaveElements () {
-       return {
-         TZL_pkh: document.getElementById('sgn-tosave-tzl-pkh'),
-         ETH_addr: document.getElementById('sgn-tosave-eth-addr'),
-         TZL_pk: document.getElementById('sgn-tosave-tzl-pk'),
-         ETH_addr_signature: document.getElementById('sgn-tosave-eth-addr-signature')
-       }
-     }
-     
-     function saveTextAsFile () {
-       // fill fields
-       let toSaveElements = getToSaveElements()
-       
-       for (let p in toSaveElements) {
-         toSaveElements[p].innerHTML = output[p]
-       }
-       
-       let content = document
-         .getElementById('sgn-tosave')
-         .textContent
-         .replace(/  +/g, '')
-         .replace(/\n\n\n+/g, '\n\n')
-         .replace(/^\n\n/, '')
-         .replace(/\n\n$/, '')
-       let contentBlob = new Blob([content], { type: 'text/plain' })
-       let contentURL = window.URL.createObjectURL(contentBlob)
-       let btn = document.createElement('a')
-       
-       btn.download = 'TzLibre-signature-data.txt'
-       btn.addEventListener('click', destroyClickedElement)
-       btn.innerHTML = 'Download the above data'
-       btn.style.display = 'none'
-       btn.href = contentURL
-       document.body.appendChild(btn)
-       btn.click()
-     }
-     
-     function destroyClickedElement (el) {
-       document.body.removeChild(el.target)
-     }
+    /** Globals **/
+    
+    let input = {}
+    let output = {}
+    
+    /** Library **/
+    
+    function getInputElements () {
+      return {
+        ETH_addr: document.getElementById('field_ethaddress'),
+        TZ_addr: document.getElementById('field_tzaddress'),
+        mnemonic: document.getElementById('field_seed'),
+        email: document.getElementById('field_email'),
+        password: document.getElementById('field_password')
+      }
+    }
+    
+    function getOutputElements () {
+      return {
+        TZL_pkh: document.getElementById('tzl-pkh'),
+        ETH_addr: document.getElementById('eth-addr'),
+        TZL_pk: document.getElementById('tzl-pk'),
+        ETH_addr_signature: document.getElementById('eth-addr-signature')
+      }
+    }
+    
+    function add_0x (addr) {
+      if (addr.startsWith('0x')) {
+        return addr
+      }
+      
+      return '0x' + addr
+    }
+    
+    function startLoading () {
+      let button = document.getElementById('button_submit')
+      button.classList.add('loading')
+      button.setAttribute('disabled', true)
+    }
+    
+    function stopLoading () {
+      let button = document.getElementById('button_submit')
+      button.classList.remove('loading')
+      button.removeAttribute('disabled')
+    }
+    
+    function handleGenerateDataPromise (data) {
+      output = data
+      console.log(output)
+      let isValid = typeof output !== 'string'
+      
+      if (isValid) {
+        showTxData(output)
+        document.getElementById('sgn-form-result').style.display = 'block'
+        document.getElementById('sgn-form-result').scrollIntoView()
+      } else {
+        showFormError()
+        console.error(output)
+      }
+      stopLoading()
+    }
+    
+    function handleGenerateDataPromiseError (err) {
+      showFormError()
+      console.error(err)
+      stopLoading()
+    }
+    
+    function submitForm (event) {
+      startLoading()
+      
+      let inputElements = getInputElements()
+      
+      for (let p in inputElements) {
+        input[p] = inputElements[p].value
+      }
+      // add 0x to ETH_addr
+      input.ETH_addr = add_0x(input.ETH_addr)
+      
+      setTimeout(function () {
+        let outputPromise = generateData(input)
+        outputPromise
+          .then(handleGenerateDataPromise)
+          .catch(handleGenerateDataPromiseError)
+      }, 100)
+    }
+    
+    function showTxData (data) {
+      let outputElements = getOutputElements()
+      
+      for (let p in outputElements) {
+        if (p === 'ETH_addr') {
+          outputElements[p].innerHTML = add_0x(data[p])
+        } else {
+          outputElements[p].innerHTML = data[p]
+        }
+      }
+    }
+    
+    function showFormError () {
+      alert( 'Something went wrong. Doublecheck your inputs and try again.' )
+    }
+    
+    // Save data
+    
+    function getToSaveElements () {
+      return {
+        TZL_pkh: document.getElementById('sgn-tosave-tzl-pkh'),
+        ETH_addr: document.getElementById('sgn-tosave-eth-addr'),
+        TZL_pk: document.getElementById('sgn-tosave-tzl-pk'),
+        ETH_addr_signature: document.getElementById('sgn-tosave-eth-addr-signature')
+      }
+    }
+    
+    function saveTextAsFile () {
+      // fill fields
+      let toSaveElements = getToSaveElements()
+      
+      for (let p in toSaveElements) {
+        if (p === 'ETH_addr') {
+          toSaveElements[p].innerHTML = add_0x(output[p])
+        } else {
+          toSaveElements[p].innerHTML = output[p]
+        }
+      }
+      
+      let content = document
+        .getElementById('sgn-tosave')
+        .textContent
+        .replace(/  +/g, '')
+        .replace(/\n\n\n+/g, '\n\n')
+        .replace(/^\n\n/, '')
+        .replace(/\n\n$/, '')
+      let contentBlob = new Blob([content], { type: 'text/plain' })
+      let contentURL = window.URL.createObjectURL(contentBlob)
+      let btn = document.createElement('a')
+      
+      btn.download = 'TzLibre-signature-data.txt'
+      btn.addEventListener('click', destroyClickedElement)
+      btn.innerHTML = 'Download the above info as TzLibre-signature-data.txt'
+      btn.style.display = 'none'
+      btn.href = contentURL
+      document.body.appendChild(btn)
+      btn.click()
+    }
+    
+    function destroyClickedElement (el) {
+      document.body.removeChild(el.target)
+    }
     </script>
     
     <script>
