@@ -11,11 +11,11 @@ This tool allows you to produce TzLibre signature data from a web browser. Such 
 5. Open the downloaded HTML file 
 6. Follow instructions on screen
 
-** Content of this repo **
+** Content of this repo
 
 ~dist/tzlibre-signature-webtool.html~ this is the only file to download and open in order to produce signature data. It is self-contained, and it also contains dist/lib.js
 
-*** Optional - other files (developers only) **
+*** Optional - other files (developers only)
 
 ~dist/lib.js~ browserified crypto library. it is built merging and browserifying ~lib.js~ with cryptographic node modules.
 ~Dockerfile~ Docker recipe to set up an envirnoment to make the build. A Docker environment is required for making a build with 0-diff against ~dist/tzlibre-signature-webtool.html~
@@ -25,7 +25,7 @@ This tool allows you to produce TzLibre signature data from a web browser. Such 
 ~package.json~ required node modules
 ~tzlibre-signature-webtool.tmpl.html~ HTML template used to generate the web tool. When building it is merged with ~dist/lib.js~
 
-** Optional - build instructions (developers only) **
+** Optional - build instructions (developers only)
 
 1. Install system dependencies
 
@@ -39,7 +39,7 @@ make
 
 3. Verify result
 
-The file `build/tzlibre-signature-webtool.html` cointains the build output. You can now verify the file has 0-diff against the distributed version in `dist/tzlibre-signature-webtool.html`.
+The file ~build/tzlibre-signature-webtool.html~ cointains the build output. You can now verify the file has 0-diff against the distributed version in `dist/tzlibre-signature-webtool.html`.
 
 ** Need help?
 
